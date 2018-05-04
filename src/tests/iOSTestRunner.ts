@@ -9,7 +9,7 @@ export class IOSTestRunner extends AppCenterUITestRunner {
     }
 
     protected getBundleOutputDir(): string {
-        return `${this.getRelativeBuildBinaryDirectoryPath()}/${this.getBundleName()}`;
+        return `ios/${this.getRelativeBuildBinaryDirectoryPath()}/${Utils.getAppName(this.options.appDirPath)}.app/assets/${this.getBundleName()}`;
     }
 
     protected getAssetsFolder(): string {
@@ -25,7 +25,7 @@ export class IOSTestRunner extends AppCenterUITestRunner {
     }
 
     protected getRelativeBuildBinaryDirectoryPath(): string {
-        return "DerivedData/Build/Products/Release-iphoneos";
+        return "DerivedData/Build/Products/Debug-iphoneos";
     }
 
     protected getTestFrameworkName(): string {
@@ -38,7 +38,7 @@ export class IOSTestRunner extends AppCenterUITestRunner {
             "xcodebuild",
             "build-for-testing",
             "-configuration",
-            "Release",
+            "Debug",
             "-workspace",
             path.join(this.nativeAppDirectory, `${appName}.xcworkspace`),
             "-sdk",
